@@ -1,0 +1,124 @@
+package ru.school.util;
+
+public class StrUtils {
+
+    public static boolean isNumber(String s) {
+        try {
+            Integer.parseInt(s);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+}
+
+package ru.school;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+import static ru.school.util.StrUtils.isNumber;
+
+public class EvenNumber {
+
+    public static void main(String[] args) throws IOException {
+        System.out.println("Определяет, является ли число а четным или нечетным");
+        System.out.print("Введите число: ");
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        String str = in.readLine();
+
+        if (isNumber(str)) {
+            System.out.println(Integer.valueOf(str) % 2 == 0 ? "Четное число" : "Не четное число");
+        } else
+            System.out.printf("%s не является числом", str);
+    }
+
+}
+
+package ru.school;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class AreaRectangle {
+
+    public static void main(String[] args) throws IOException {
+        System.out.println("Площадь прямоугольника");
+        System.out.print("Введите через пробел стороны прямоугольника: ");
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        String str = in.readLine();
+        String[] arrStr = str.split(" ");
+
+        int a = Integer.valueOf(arrStr[0]);
+        int b = Integer.valueOf(arrStr[1]);
+        System.out.printf("Площадь = %d\n", a * b);
+    }
+
+}
+
+package ru.school;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import static ru.school.util.StrUtils.isNumber;
+
+public class MaxNumber {
+
+    public static void main(String[] args) throws IOException {
+        System.out.print("Находит максимальный элемент в массиве");
+        System.out.print("Введите целые числа через пробел: ");
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        String str = in.readLine();
+        String[] arrStr = str.split(" ");
+
+        Integer max = null;
+        Integer num;
+        for (String s : arrStr) {
+            if (isNumber(s)) {
+                num = Integer.valueOf(s);
+                if (max == null || max < num) max = num;
+            }
+        }
+        System.out.printf("Максимальное число %d\n", max);
+    }
+
+}
+
+package ru.school;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+import static ru.school.util.StrUtils.isNumber;
+
+public class NumberMultiplicity {
+
+    public static void main(String[] args) throws IOException {
+        final int DIVIDER = 5;
+
+        System.out.printf("Определяет количество чисел в массиве кратные %d\n", DIVIDER);
+        System.out.print("Введите целые числа через пробел: ");
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        String str = in.readLine();
+        String[] arrStr = str.split(" ");
+
+        int count = 0;
+        for (String s : arrStr) {
+            if (isNumber(s) && (Integer.valueOf(s) % DIVIDER == 0)) {
+                count++;
+            }
+        }
+
+        System.out.printf("%d чисел кратны %d\n", count, DIVIDER);
+    }
+
+}
